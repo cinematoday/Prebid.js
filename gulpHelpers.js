@@ -45,13 +45,13 @@ module.exports = {
       .filter(module => !!module);
 
     try {
+      var moduleFile = 'modules.json';
       if (modules.length === 1 && path.extname(modules[0]).toLowerCase() === '.json') {
-        var moduleFile = modules[0];
-
-        modules = JSON.parse(
-          fs.readFileSync(moduleFile, 'utf8')
-        );
+        moduleFile = modules[0];
       }
+      modules = JSON.parse(
+        fs.readFileSync(moduleFile, 'utf8')
+      );
     } catch (e) {
       throw new gutil.PluginError({
         plugin: 'modules',

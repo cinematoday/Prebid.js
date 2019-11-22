@@ -16,11 +16,29 @@ Working examples can be found in [the developer docs](http://prebid.org/dev-docs
 
 **Table of Contents**
 
+- [シネマトゥデイ用のカスタマイズ](#CINEMATODAY)
 - [Usage](#Usage)
 - [Install](#Install)
 - [Build](#Build)
 - [Run](#Run)
 - [Contribute](#Contribute)
+
+<a name="CINEMATODAY"></a>
+
+## シネマトゥデイ用のカスタマイズ
+
+Prebid.js v2.41.0 に下記の変更を加えている
+
+- グローバル変数名を `pbjs` から `ctPbjs` に変更
+- `./modules.json` で指定したモジュールだけをバンドルする
+
+次のコマンドでビルドを実行
+
+    $ npx gulp build
+
+以下のファイルが作成される
+
++ `./build/dist/prebid.js` - Minified production code
 
 <a name="Usage"></a>
 
@@ -129,7 +147,7 @@ Once setup, run the following command to globally install the `gulp-cli` package
 
 To build the project on your local machine, run:
 
-    $ gulp serve
+    $ npx gulp serve
 
 This runs some code quality checks, starts a web server at `http://localhost:9999` serving from the project root and generates the following files:
 
@@ -153,11 +171,11 @@ Building with just these adapters will result in a smaller bundle which should a
 - Clone the repo, run `npm install`
 - Then run the build:
 
-        $ gulp build --modules=openxBidAdapter,rubiconBidAdapter,sovrnBidAdapter
+        $ npx gulp build --modules=openxBidAdapter,rubiconBidAdapter,sovrnBidAdapter
         
 Alternatively, a `.json` file can be specified that contains a list of modules you would like to include.
 
-    $ gulp build --modules=modules.json
+    $ npx gulp build --modules=modules.json
         
 With `modules.json` containing the following
 ```json modules.json
@@ -175,7 +193,7 @@ In case you'd like to explicitly show that your project uses `prebid.js` and wan
 - Add `prebid.js` as a `npm` dependency of your project: `npm install prebid.js`
 - Run the `prebid.js` build under the `node_modules/prebid.js/` folder
 
-        $ gulp build --modules=path/to/your/list-of-modules.json
+        $ npx gulp build --modules=path/to/your/list-of-modules.json
 
 Most likely your custom `prebid.js` will only change when there's:
 
@@ -191,26 +209,26 @@ Having said that, you are probably safe to check your custom bundle into your pr
 To lint the code:
 
 ```bash
-gulp lint
+npx gulp lint
 ```
 
 To run the unit tests:
 
 ```bash
-gulp test
+npx gulp test
 ```
 
 To generate and view the code coverage reports:
 
 ```bash
-gulp test-coverage
-gulp view-coverage
+npx gulp test-coverage
+npx gulp view-coverage
 ```
 
 For Prebid.org members with access to BrowserStack, additional end-to-end testing can be done with:
 
 ```bash
-gulp e2e-test --host=test.localhost
+npx gulp e2e-test --host=test.localhost
 ```
 
 To run these tests, the following items are required:
@@ -249,7 +267,7 @@ For deployment:
 Build and run the project locally with:
 
 ```bash
-gulp serve
+npx gulp serve
 ```
 
 This runs `lint` and `test`, then starts a web server at `http://localhost:9999` serving from the project root.
@@ -286,7 +304,7 @@ If you are contributing code, you should [configure your editor](http://eslint.o
 
 ### Unit Testing with Karma
 
-        $ gulp test --watch --browsers=chrome
+        $ npx gulp test --watch --browsers=chrome
 
 This will run tests and keep the Karma test browser open. If your `prebid.js` file is sourced from the `./build/dev` directory you will also have sourcemaps available when using your browser's developer tools.
 
@@ -298,7 +316,7 @@ This will run tests and keep the Karma test browser open. If your `prebid.js` fi
 
 Detailed code coverage reporting can be generated explicitly with
 
-        $ gulp test --coverage
+        $ npx gulp test --coverage
 
 The results will be in
 
